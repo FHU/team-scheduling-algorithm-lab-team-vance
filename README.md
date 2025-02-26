@@ -9,7 +9,7 @@ In this lab you and your partner will implement two of the process scheduling al
 		<li>conda activate os-scheduling-alg</li>
 	</ul>
 	<li>Pull starter code from GitHub Classroom</li>
-	<li>Open in VS code and switch to the prod_cons_buff anaconda environment</li>
+	<li>Open in VS code and switch to the os-scheduling-alg anaconda environment</li>
 	<li>When the lab is complete, push code to GitHub Classroom</li>
 </ol>
 
@@ -20,7 +20,7 @@ In this lab you and your partner will implement two of the process scheduling al
   <li>Process Class</li>
   <ul><li>This class will contain any necessary attributes needed to describe a process so the scheduler can schedule the process appropriately.</li>
   <li>__str__: You will need to implement the str method that determines how a process will be represented as a string.</li>
-  <li>__lr__: You will need to implement the lt method that determines how processes are compared.</li></ul>
+  <li>__lt__: You will need to implement the lt method that determines how processes are compared.</li></ul>
   <li>CustomQueue Class</li>
   <ul><li>You will need to implement a CustomQueue class to represents the ready queue of processes that have been scheduled and ready to run based on the algorithm in use.</li>
   <li>Include any attributes needed to describe the queue that are needed for scheduling.</li>
