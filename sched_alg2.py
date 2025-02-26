@@ -33,7 +33,7 @@ if __name__ == '__main__':
     queue = Queue()
     for i in range(30):
         queue.put(SJFProcess(pid=random.randint(1,50), burst_time=random.randint(1,50)))
-    scedule = SFJScheduler(queue)
-    scedule.schedule()
+    schedule = SFJScheduler(queue)
+    schedule.schedule()
     for i in range(queue.count):
         print(queue.get())
