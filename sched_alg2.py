@@ -6,34 +6,26 @@ import random
 
 #CLASSES GO HERE
 class SFJScheduler:
-    def __init__(self, queue):
-        self.queue = queue
-    def schedule(self):
-        current = self.queue.head;  
-        index = None;  
-        if(self.queue.is_empty()):
-            print('Queue is empty')
-        elif(self.queue.head == None):  
-            return;  
-        else:  
-            while(current != None):  
-                index = current.next;  
-                  
-                while(index != None):  
-                    if(current.item < index.item):  
-                        temp = current.item;  
-                        current.item = index.item;  
-                        index.item = temp;  
-                    index = index.next;  
-                current = current.next; 
+    def __init__(self):
+        self.ready_queue = Queue()
+
+    def schedule(self, processes: list):
+        processes.sort()
+        for process in processes:
+            self.ready_queue.put(process)
+
+    def consume(self):
+        for i in range(self.ready_queue.count):
+            print(self.ready_queue.get())
+
 
 if __name__ == '__main__':
 #REMOVE PASS AND DEMONSTRATE THE SCHEDULER IN ACTION HERE
 #CREATE ANY QUEUES, PROCESSES, CALL APPROPRIATE METHODS
-    queue = Queue()
+    schedule = SFJScheduler()
+    process_list = []
     for i in range(30):
-        queue.put(SJFProcess(pid=random.randint(1,50), burst_time=random.randint(1,50)))
-    schedule = SFJScheduler(queue)
-    schedule.schedule()
-    for i in range(queue.count):
-        print(queue.get())
+        process_list.append((SJFProcess(pid=i,  burst_time=random.randint(1,30))))
+    
+    schedule.schedule(process_list)
+    schedule.consume()
