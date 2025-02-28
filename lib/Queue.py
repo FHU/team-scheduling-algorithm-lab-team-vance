@@ -37,6 +37,48 @@ class Queue:
     def is_empty(self):
         return self.count == 0
 
+    def _partition(self, head, end):
+        if head == end or head.next == end:
+            return head
+
+        pivot = head
+        i = head
+        j = head.next
+
+        while j != end:
+            if j.item > pivot.item:
+                i = i.next
+                i.item, j.item = j.item, i.item
+            j = j.next
+
+        head.item, i.item = i.item, head.item
+        return i
+
+    def _quick_sort(self, head, end):
+        if head == end or head == None or head.next == end:
+            return head
+
+        pivot = self._partition(head, end)
+        self._quick_sort(head, pivot)
+        self._quick_sort(pivot.next, end)
+        return head
+
+    def sort(self):
+        self._quick_sort(self.head, None)
+
+    def insert(self, item):
+        new_node = Node(item)
+
+        curr = self.head
+
+        while curr != None:
+            if curr.item < new_node.item and curr.next.item > new_node.item:
+                old_next = curr.next
+                curr.next = new_node
+                new_node.next = old_next
+            else:
+                curr = curr.next
+
 
 class Node:
 
@@ -47,10 +89,12 @@ class Node:
 
 if __name__ == "__main__":
     #Queue Test
+    import random
     q = Queue()
 
-    for i in range(10):
-        q.put(i)
+    for i in range(20):
+        q.put(random.randint(0,30))
 
+    q.sort()
     while not q.is_empty():
         print(q.get())
