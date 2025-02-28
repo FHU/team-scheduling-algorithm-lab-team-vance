@@ -18,7 +18,7 @@ class MLRRScheduler:
 
         self.layers[proccess.priority].put(proccess)
 
-    def run(self):
+    def consume(self):
         for i,queue in enumerate(self.layers):
             print(f"Queue layer: {i}")
             while not queue.is_empty():
@@ -39,4 +39,4 @@ if __name__ == '__main__':
     for i in range(30):
         schedule.schedule(MLRRProcess(pid=i, burst_time=random.randint(0,30), priority=random.randint(0,4)))
     
-    schedule.run()
+    schedule.consume()
