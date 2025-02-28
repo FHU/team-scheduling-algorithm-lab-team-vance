@@ -66,6 +66,19 @@ class Queue:
     def sort(self):
         self._quick_sort(self.head, None)
 
+    def insert(self, item):
+        new_node = Node(item)
+
+        curr = self.head
+
+        while curr != None:
+            if curr.item < new_node.item and curr.next.item > new_node.item:
+                old_next = curr.next
+                curr.next = new_node
+                new_node.next = old_next
+            else:
+                curr = curr.next
+
 
 class Node:
 
