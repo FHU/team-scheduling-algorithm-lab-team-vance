@@ -6,13 +6,16 @@ import random
 
 #CLASSES GO HERE
 class SFJScheduler:
+
     def __init__(self):
         self.ready_queue = Queue()
+
 
     def schedule(self, processes: list):
         processes.sort()
         for process in processes:
             self.ready_queue.put(process)
+
 
     def consume(self):
         for i in range(self.ready_queue.count):

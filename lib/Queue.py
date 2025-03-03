@@ -4,6 +4,7 @@ class Queue:
         self.head = self.tail = None
         self.count = 0
 
+
     def put(self, item):
         new_node = Node(item)
         self.count += 1
@@ -34,6 +35,7 @@ class Queue:
         self.count -= 1
         return return_value
 
+
     def is_empty(self):
         return self.count == 0
 
@@ -54,6 +56,7 @@ class Queue:
         head.item, i.item = i.item, head.item
         return i
 
+
     def _quick_sort(self, head, end):
         if head == end or head == None or head.next == end:
             return head
@@ -63,8 +66,10 @@ class Queue:
         self._quick_sort(pivot.next, end)
         return head
 
+
     def sort(self):
         self._quick_sort(self.head, None)
+
 
     def sorted_insert(self, item):
         new_node = Node(item)

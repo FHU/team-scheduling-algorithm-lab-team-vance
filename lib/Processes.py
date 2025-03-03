@@ -6,6 +6,7 @@ class Process:
 
 
 class MLRRProcess(Process):
+
     def __init__(self,pid, burst_time, priority=0):
         super().__init__(pid, burst_time)
         self.priority = priority
