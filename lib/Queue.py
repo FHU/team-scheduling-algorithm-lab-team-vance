@@ -68,21 +68,28 @@ class Queue:
 
     def sorted_insert(self, item):
         new_node = Node(item)
-        count += 1
+        self.count += 1
 
-        if self.is_empty():
+        if self.head == None:
             self.head = self.tail = new_node
             return
 
-        curr = self.head
+        curr = self.tail
 
         while curr != None:
-            if curr.item <= new_node.item and curr.next.item > new_node.item:
-                old_next = curr.next
-                curr.next = new_node
-                new_node.next = old_next
+            if curr.item < new_node.item:
+                curr = curr.prev
             else:
-                curr = curr.next
+                new_node.prev = curr
+                new_node.next = curr.next
+                curr.next = new_node
+
+                if new_node.next != None:
+                    new_node.next.prev = new_node
+
+                if curr == self.tail:
+                    self.tail = new_node
+                break
 
 
 class Node:
@@ -98,8 +105,8 @@ if __name__ == "__main__":
     q = Queue()
 
     for i in range(20):
-        q.put(random.randint(0,30))
+        j = random.randint(0,30)
+        q.sorted_insert(j)
 
-    q.sort()
     while not q.is_empty():
         print(q.get())
